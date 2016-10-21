@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Rohit - Web Developer</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1"/>
+	<link rel="stylesheet" type="text/css" href="css/index.css"/>
+	<link href='https://fonts.googleapis.com/css?family=Raleway:400,300' rel='stylesheet' type='text/css'/>
+</head>
+<body>
+	<div class="main-content">
+		<header>
+			<nav class="clearfix header-nav">
+				<ul class="left-nav nav-list">
+					<!--li>HOME</li-->
+				</ul>
+				<ul class="right-nav nav-list">
+					<li><a href="#" class="toggle">&#9776;</a></li>
+				</ul>
+			</nav>
+		</header>
+		<!--div class="body-content">
+			<div class="img-c">
+				<img src="img/profile.jpg" class="backdrop"/>
+			</div>
+			<div class="desc-container">
+				<div class="name">Rohit Boggarapu</div>
+				<div class="title">UI Engineer<span class="company">@Adobe</span></div>
+
+				<div class="previous">Previously <span class="company">@Housing</span>, <span class="company">@FusionCharts</span></div>
+
+				<div class="contact">
+					Contact me <a href="mailto:brohit4@gmail.com?Subject=Hello Rohit!">here</a>
+				</div>
+
+
+				<div class="feed-container">
+			            <a class="twitter-timeline"  href="https://twitter.com/4two2" data-widget-id="698073746804854784">Tweets by @4two2</a>
+	            <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+	        		</div>
+			</div>
+		</div-->
+		
+          
+	</div>
+	<ul class="right-nav nav-list main-nav">
+		<li class="link"><a href="#">ABOUT</a></li>
+		<li class="link"><a href="#">BLOG</a></li>
+		<li class="link"><a href="#">CONTACT</a></li>
+	</ul>
+	<script type="text/javascript">
+			var toggleEl = document.querySelector('.toggle');
+			toggleEl.addEventListener('click', function () {
+				var mainNavEl = document.querySelector('.main-nav');
+				if(mainNavEl.className.indexOf('main-nav-hide') >=0 ) {
+					mainNavEl.className = mainNavEl.className.replace('main-nav-hide', '');
+				}
+				else {
+					mainNavEl.className = mainNavEl.className + ' main-nav-hide';
+				}
+
+			});
+	</script>
+</body>
+</html>

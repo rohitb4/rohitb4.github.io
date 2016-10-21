@@ -1,0 +1,186 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* Reset End */
+
+body {
+	margin: 0px;
+	background-color: #f3f3f3;
+	font-family: 'Raleway', sans-serif;
+	color: #333;
+	font-size: 14px;
+}
+
+.clearfix:after {
+	clear: both;
+	display: table;
+	content: "";
+}
+
+.left-nav {
+	float: left;
+}
+.right-nav {
+	float: right;
+}
+.nav-list li {
+	/*display: inline-block;*/
+	padding-bottom: 5px;
+	margin-right: 15px;
+	border-bottom: 2px solid transparent;
+	letter-spacing: 1px;
+}
+.nav-list>li>a {
+	text-decoration: none;
+	color: inherit;
+	font-size: 16px;
+	line-height: 20px;
+	display: inline-block;
+	padding-bottom: 5px;
+	box-sizing: border-box;
+}
+.nav-list li:hover a{
+	border-bottom: 1px solid #222;
+}
+.header-nav {
+	padding: 15px 20px;
+	/*margin-top: 20px;*/
+}
+.backdrop {
+	width: 100%;
+}
+
+.feed-container {
+	margin-top: 25px;
+	height: 400px;
+	overflow: hidden;
+}
+.desc-container {
+	text-align: right;
+}
+
+.name {
+	margin-bottom: 10px;
+	font-size: 25px;
+	line-height: 30px;
+}
+.title {
+	margin-bottom: 10px;
+}
+.company {
+		font-style: italic;
+		font-size: 14px;
+		color: #333;
+}
+.contact {
+	margin-top: 25px;
+}
+
+@media screen and (max-width: 899px) {
+	.body-content {
+		position: relative;
+	}
+
+	.desc-container {
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		background: -webkit-linear-gradient(left,  rgba(255,255,255,0), rgba(255,255,255,0.5));
+		background: -moz-linear-gradient(left,  rgba(255,255,255,0), rgba(255,255,255,0.5));
+		background: linear-gradient(left,  rgba(255,255,255,0), rgba(255,255,255,0.5));
+	}
+}
+
+@media screen and (min-width: 900px) {
+	.main-content {
+		width: calc(100% - 200px);
+		height: 100%;
+		box-sizing: border-box;
+		background-image: url('../img/cover.png');
+		background-size: cover;
+
+	}
+	html {
+		height: 100%;
+	}
+	body {
+		padding-top: 0px;
+		height: 100%;
+	}
+	.main-nav .link {
+		margin-bottom: 20px;
+	}
+	.main-nav {
+		position: fixed;
+		top: 0;
+		right: 0;
+		width: 200px;
+		background-color: #ddd;
+		height: 100%;
+
+		padding: 50px 15px 10px 15px;
+		transition: 0.7s linear all;
+	}
+	.main-nav-hide {
+		width: 0;
+	}
+	.desc-container {
+
+		display: inline-block;
+		width: 49%;
+		vertical-align: top;
+		box-sizing: border-box;
+	}
+	.img-c {
+		display: inline-block;
+		width: 50%;
+		box-sizing: border-box;
+	}
+}
