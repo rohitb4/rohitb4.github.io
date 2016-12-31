@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <style type="text/css">
-.flex-container{
-display: flex;
-justify-content: center;
-margin-top: 30px; 
-}
-.flex-item{
+	.flex-container{
+		display: flex;
+		justify-content: center;
+		margin-top: 30px; 
+	}
+	.flex-item{
 
 		display: flex;
 		font-size: 16px;
@@ -82,9 +82,9 @@ margin-top: 30px;
 		font-size: 30px;
 		color: #d0d0d0;
 	}
-	 * {
+	* {
 	 	box-sizing: border-box;
-	 }
+	}
 </style>
 <head>
 	<title>2016 collage maker </title>
@@ -93,16 +93,30 @@ margin-top: 30px;
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script type="text/javascript" src="collageplus.js"></script>
 <script>
+	function getParameterByName(name, url) {
+	    if (!url) {
+	      url = window.location.href;
+	    }
+	    name = name.replace(/[\[\]]/g, "\\$&");
+	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+	        results = regex.exec(url);
+	    if (!results) return null;
+	    if (!results[2]) return '';
+	    return decodeURIComponent(results[2].replace(/\+/g, " "));
+	}
+	var token = getParameterByName('code');
   // This is called with the results from from FB.getLoginStatus().
   function statusChangeCallback(response) {
-    console.log('statusChangeCallback');
-    console.log(response);
     // The response object is returned with a status field that lets the
     // app know the current login status of the person.
     // Full docs on the response object can be found in the documentation
     // for FB.getLoginStatus().
     if (response.status === 'connected') {
       // Logged into your app and Facebook.
+      if (!token) {
+      	debugger
+      	window.location = '/collage?code=' + response.authResponse.accessToken;
+      }
       getUserData(response.authResponse);
     } else if (response.status === 'not_authorized') {
       // The person is logged into Facebook, but not your app.
@@ -165,7 +179,9 @@ margin-top: 30px;
   // successful.  See statusChangeCallback() for when this call is made.
   //'/me/feed?fields=from&since=1451586600000'1364849754
   function getUserData(authResponse) {
-    FB.api(authResponse.userID + '/photos?since=1451586600&limit=2&fields=link,images', function(response) {
+    FB.api(authResponse.userID + '/photos?since=1451586600&limit=2&fields=link,images', {
+    	access_token: token
+    }, function(response) {
       var feedData = response.data,
       	image;
       for (var i =0, ii = feedData.length; i < ii; i++) {
@@ -177,7 +193,9 @@ margin-top: 30px;
       }
       
     });
-     FB.api(authResponse.userID + '/photos?since=1451586600&limit=3&fields=link,images&type=uploaded', function(response) {
+     FB.api(authResponse.userID + '/photos?since=1451586600&limit=3&fields=link,images&type=uploaded', {
+    	access_token: token
+    }, function(response) {
       var feedData = response.data,
       	image;
       for (var i =0, ii = feedData.length; i < ii; i++) {
@@ -205,6 +223,7 @@ margin-top: 30px;
 		
 			<div class="flex-item1">CREATE YOUR 2016 COLLAGE
 				<div class="fb-share-button" data-href="http://collagemaker.website" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcollagemaker.website%2F&amp;src=sdkpreparse">Share</a></div>
+				<div class="share-btn"></div>
 			</div>
 			<div class="flex-item2 dummy-collage">
 				<img src="https://scontent.fblr2-1.fna.fbcdn.net/v/t1.0-9/13872730_1054223444667930_8873552867419026909_n.jpg?oh=f9275189e6fc7fbb3ccc2f340a640d09&oe=592248C3" height="200" width="200">
@@ -233,6 +252,13 @@ margin-top: 30px;
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+
+		var sharEl = '<div class="fb-share-button" data-href="'+ window.location.href +'" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcollagemaker.website%2F&amp;src=sdkpreparse">Share</a></div>';
+
+		$('.share-btn').html(sharEl);
+	</script>
 	
 </body>
 </html>
