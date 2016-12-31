@@ -18,14 +18,15 @@ margin-top: 30px;
 		align-items: center;
 	}
 	.flex-item1{
-		margin-top: 10px;
+		margin-top: 20px;
+		font-size: 30px;
+		font-weight: 100;
 	}
-	.flex-item2{
-		margin-top:10px;
+	.flex-item2, .collage-container{
+		margin-top:20px;
+		margin-bottom: 20px;
 	}
-	.flex-item3{
-		margin-top: 10px;
-	}
+	
 	header{
 
 		border-bottom: 1px solid #dddddd;
@@ -52,7 +53,7 @@ margin-top: 30px;
 		background-color: white;
 		overflow: hidden;
 		position: relative;
-
+		display: none;
 	}
 	.bye, .collage {
 		display: inline-block;
@@ -64,7 +65,7 @@ margin-top: 30px;
 		background-color: #000;
 		height: 100%;
 		background-image: url(bye.png);
-		background-repeat-x: no-repeat;
+		background-repeat: repeat-y;
 	}
 	.bye-image {
 		width: 100%;
@@ -72,6 +73,7 @@ margin-top: 30px;
 	.collage {
 		width: 70%;
 		height: 100%;
+		overflow: hidden; 
 	}
 	.year-info {
 		position: absolute;
@@ -170,7 +172,7 @@ margin-top: 30px;
       	console.log(feedData[i].created_time);
       	console.log('http://graph.facebook.com/' + feedData[i].id);
       	image = document.createElement('img');
-      	image.src = feedData[i].images[5].source.replace('s', '');
+      	image.src = feedData[i].images[5] && feedData[i].images[5].source.replace('s', '') || feedData[i].images[4].source.replace('s', '');
       	$('.collage').append(image);
       }
       
@@ -180,12 +182,14 @@ margin-top: 30px;
       	image;
       for (var i =0, ii = feedData.length; i < ii; i++) {
       	image = document.createElement('img');
-      	image.src = feedData[i].images[4].source.replace('s', '');
+      	image.src = feedData[i].images[5] && feedData[i].images[5].source.replace('s', '') || feedData[i].images[4].source.replace('s', '');
       	$('.collage').append(image);
       }
       	setTimeout(function(){
-      		$('.collage').collagePlus();
+      		
+      		$('.collage-container').show();
       		$('.dummy-collage').hide();
+      		$('.collage').collagePlus();
       	}, 2000);
        
     });
@@ -199,7 +203,9 @@ margin-top: 30px;
 	<div class="flex-container">
 		<div class="flex-item">
 		
-			<div class="flex-item1">CREATE YOUR COLLAGE</div>
+			<div class="flex-item1">CREATE YOUR 2016 COLLAGE
+				<div class="fb-share-button" data-href="http://collagemaker.website" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcollagemaker.website%2F&amp;src=sdkpreparse">Share</a></div>
+			</div>
 			<div class="flex-item2 dummy-collage">
 				<img src="https://scontent.fblr2-1.fna.fbcdn.net/v/t1.0-9/13872730_1054223444667930_8873552867419026909_n.jpg?oh=f9275189e6fc7fbb3ccc2f340a640d09&oe=592248C3" height="200" width="200">
 				<div class="flex-item3">GET YOUR OWN COLLAGE</div>
@@ -217,9 +223,11 @@ margin-top: 30px;
 					
 				</div>
 			</div>
-
-			<fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();">
-			</fb:login-button>
+			<div>
+				<fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();" data-size="xlarge" size="xlarge">
+				</fb:login-button>
+				
+			</div>
 
 			<div id="status">
 			</div>
