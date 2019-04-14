@@ -1,0 +1,26 @@
+html {
+  font-size: 62.5%;
+}
+body {
+  width: 1100px;
+  margin: 0 auto;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.4;
+  color: #333;
+}
+
+header {
+  padding: 16px 0px;
+}
+
+.dp {
+  width: 50px;
+  border-radius: 50%;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+.name-val {
+  vertical-align: middle;
+  font-size: 2rem;
+
+}

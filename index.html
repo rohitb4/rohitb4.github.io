@@ -1,264 +1,46 @@
 <!DOCTYPE html>
-<html>
-<style type="text/css">
-	.flex-container{
-		display: flex;
-		justify-content: center;
-		margin-top: 30px; 
-	}
-	.flex-item{
+<html >
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+  </head>
+  <body>
 
-		display: flex;
-		font-size: 16px;
-		font-weight: bold;
-		font-family: "helvetica";
-		background-color: #ffcf56;
-		width: 80%;
-		flex-direction: column;
-		align-items: center;
-	}
-	.flex-item1{
-		margin-top: 20px;
-		font-size: 30px;
-		font-weight: 100;
-	}
-	.flex-item2, .collage-container{
-		margin-top:20px;
-		margin-bottom: 20px;
-	}
-	
-	header{
+    <header>
+      <nav>
+        <a class="name">
+          <img src="img/name-small.jpeg" class="dp"/>
+          <span class="name-val">Rohit Boggarapu</span>
+        </a>
+        <ul class="links">
 
-		border-bottom: 1px solid #dddddd;
-		background-color: #f0f0f0;
+        </ul>
+      </nav>
+      <main>
+        <p class="intro">
+          Hello, I'm Rohit.
+          I'm an Engineer at heart and help build great experiences for the web.
+          I breathe HTML, CSS, JavaScript
+        </p>
+        <p class="contributions">
+          I've contributed to these organizations
+        </p>
+        <section>
+            <h2>Organiztions I contributed to</h2>
+            <ul class="organizations">
+                <li><img src="img/uber.png"/></li>
+                <li><img src="img/adobe.png"/></li>
+                <li><img src="img/housing.png"/></li>
+                <li><img src="img/fusioncharts.png"/></li>
+                <li><img src="img/saba.png"/></li>
+            </ul>
+        </section>
 
-	}
-	body{
-		margin:0;
-		padding: 0;
-		font-family: helvetica;
-	}
-	h1{
-		margin-top: 0;
-		margin-left: 30px;
-		color: #9FA7DE;
-		font-size: 20px;
-		padding-top: 10px;
-	}
-	.collage-container {
-		width: 1200px;
-		height: 800px;
-		border: 5px solid #000;
-		padding: 20px 30px;
-		background-color: white;
-		overflow: hidden;
-		position: relative;
-		display: none;
-	}
-	.bye, .collage {
-		display: inline-block;
-		vertical-align: top;
-	}
-
-	.bye {
-		width: 30%;
-		background-color: #000;
-		height: 100%;
-		background-image: url(bye.png);
-		background-repeat: repeat-y;
-	}
-	.bye-image {
-		width: 100%;
-	}
-	.collage {
-		width: 70%;
-		height: 100%;
-		overflow: hidden; 
-	}
-	.year-info {
-		position: absolute;
-		left: 30%;
-		top: 30%;
-		font-size: 30px;
-		color: #d0d0d0;
-	}
-	* {
-	 	box-sizing: border-box;
-	}
-</style>
-<head>
-	<title>2016 collage maker </title>
-</head>
-<body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script type="text/javascript" src="collageplus.js"></script>
-<script>
-	function getParameterByName(name, url) {
-	    if (!url) {
-	      url = window.location.href;
-	    }
-	    name = name.replace(/[\[\]]/g, "\\$&");
-	    var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-	        results = regex.exec(url);
-	    if (!results) return null;
-	    if (!results[2]) return '';
-	    return decodeURIComponent(results[2].replace(/\+/g, " "));
-	}
-	var token = getParameterByName('code');
-  // This is called with the results from from FB.getLoginStatus().
-  function statusChangeCallback(response) {
-    // The response object is returned with a status field that lets the
-    // app know the current login status of the person.
-    // Full docs on the response object can be found in the documentation
-    // for FB.getLoginStatus().
-    if (response.status === 'connected') {
-      // Logged into your app and Facebook.
-      if (!token) {
-      	debugger
-      	window.location = '/collage?code=' + response.authResponse.accessToken;
-      }
-      getUserData(response.authResponse);
-    } else if (response.status === 'not_authorized') {
-      // The person is logged into Facebook, but not your app.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into this app.';
-    } else {
-      // The person is not logged into Facebook, so we're not sure if
-      // they are logged into this app or not.
-      document.getElementById('status').innerHTML = 'Please log ' +
-        'into Facebook.';
-    }
-  }
-
-  // This function is called when someone finishes with the Login
-  // Button.  See the onlogin handler attached to it in the sample
-  // code below.
-  function checkLoginState() {
-    FB.getLoginStatus(function(response) {
-      statusChangeCallback(response);
-    });
-  }
-
-  window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '363864730641752',
-    cookie     : true,  // enable cookies to allow the server to access 
-                        // the session
-    xfbml      : true,  // parse social plugins on this page
-    version    : 'v2.5' // use graph api version 2.5
-  });
-
-  // Now that we've initialized the JavaScript SDK, we call 
-  // FB.getLoginStatus().  This function gets the state of the
-  // person visiting this page and can return one of three states to
-  // the callback you provide.  They can be:
-  //
-  // 1. Logged into your app ('connected')
-  // 2. Logged into Facebook, but not your app ('not_authorized')
-  // 3. Not logged into Facebook and can't tell if they are logged into
-  //    your app or not.
-  //
-  // These three cases are handled in the callback function.
-
-  FB.getLoginStatus(function(response) {
-    statusChangeCallback(response);
-  });
-
-  };
-
-  // Load the SDK asynchronously
-  (function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/sdk.js";
-    fjs.parentNode.insertBefore(js, fjs);
-  }(document, 'script', 'facebook-jssdk'));
-
-  // Here we run a very simple test of the Graph API after login is
-  // successful.  See statusChangeCallback() for when this call is made.
-  //'/me/feed?fields=from&since=1451586600000'1364849754
-  function getUserData(authResponse) {
-    FB.api(authResponse.userID + '/photos?since=1451586600&limit=2&fields=link,images', {
-    	access_token: token
-    }, function(response) {
-      var feedData = response.data,
-      	image;
-      for (var i =0, ii = feedData.length; i < ii; i++) {
-      	console.log(feedData[i].created_time);
-      	console.log('http://graph.facebook.com/' + feedData[i].id);
-      	image = document.createElement('img');
-      	image.src = feedData[i].images[5] && feedData[i].images[5].source.replace('s', '') || feedData[i].images[4].source.replace('s', '');
-      	$('.collage').append(image);
-      }
-      
-    });
-     FB.api(authResponse.userID + '/photos?since=1451586600&limit=3&fields=link,images&type=uploaded', {
-    	access_token: token
-    }, function(response) {
-      var feedData = response.data,
-      	image;
-      for (var i =0, ii = feedData.length; i < ii; i++) {
-      	image = document.createElement('img');
-      	image.src = feedData[i].images[5] && feedData[i].images[5].source.replace('s', '') || feedData[i].images[4].source.replace('s', '');
-      	$('.collage').append(image);
-      }
-      	setTimeout(function(){
-      		
-      		$('.collage-container').show();
-      		$('.dummy-collage').hide();
-      		$('.collage').collagePlus();
-      	}, 2000);
-       
-    });
-  }
-</script>
-
-
-	<header>
-		<h1>COLLAGE MAKER</h1>
-	</header>
-	<div class="flex-container">
-		<div class="flex-item">
-		
-			<div class="flex-item1">CREATE YOUR 2016 COLLAGE
-				<div class="fb-share-button" data-href="http://collagemaker.website" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcollagemaker.website%2F&amp;src=sdkpreparse">Share</a></div>
-				<div class="share-btn"></div>
-			</div>
-			<div class="flex-item2 dummy-collage">
-				<img src="https://scontent.fblr2-1.fna.fbcdn.net/v/t1.0-9/13872730_1054223444667930_8873552867419026909_n.jpg?oh=f9275189e6fc7fbb3ccc2f340a640d09&oe=592248C3" height="200" width="200">
-				<div class="flex-item3">GET YOUR OWN COLLAGE</div>
-			</div>
-			
-			<!--
-			  Below we include the Login Button social plugin. This button uses
-			  the JavaScript SDK to present a graphical Login button that triggers
-			  the FB.login() function when clicked.
-			-->
-			<div class="collage-container">
-				<div class="bye">
-					<!--img src="bye.png" class="bye-image"/-->
-				</div><div class="collage">
-					
-				</div>
-			</div>
-			<div>
-				<fb:login-button scope="public_profile,email,user_photos" onlogin="checkLoginState();" data-size="xlarge" size="xlarge">
-				</fb:login-button>
-				
-			</div>
-
-			<div id="status">
-			</div>
-		</div>
-	</div>
-
-	<script type="text/javascript">
-
-		var sharEl = '<div class="fb-share-button" data-href="'+ window.location.href +'" data-layout="button_count" data-size="large" data-mobile-iframe="true"><a class="fb-xfbml-parse-ignore" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fcollagemaker.website%2F&amp;src=sdkpreparse">Share</a></div>';
-
-		$('.share-btn').html(sharEl);
-	</script>
-	
-</body>
+      </main>
+    </header>
+  </body>
 </html>
